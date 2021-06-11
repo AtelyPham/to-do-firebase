@@ -1,51 +1,31 @@
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
+import firebase from "firebase/app"
+import "firebase/auth"
+import "firebase/firestore"
+import "firebase/database"
+import "firebase/analytics"
 
 var firebaseConfig = {
-  apiKey: "AIzaSyBAlSLGxFsPZxvJrW7W2WXJBk2RDT3gtIU",
-  authDomain: "my-first-project-187e3.firebaseapp.com",
-  projectId: "my-first-project-187e3",
-  storageBucket: "my-first-project-187e3.appspot.com",
-  messagingSenderId: "228898097023",
-  appId: "1:228898097023:web:e71db26030c6b93ef13c4a",
-};
-// Initialize Firebase
-export var app;
-if (!firebase.apps.length) {
-  app = firebase.initializeApp(firebaseConfig);
-} else {
-  app = firebase.app();
+  apiKey: YOUR_API_KEY,
+  authDomain: YOUR_AUTH_DOMAIN,
+  databaseURL: YOUR_DATABASE_URL,
+  projectId: YOUR_PROJECT_ID,
+  storageBucket: YOUR_STORAGE_BUCKET,
+  messagingSenderId: YOUR_MESSAGING_SENDER_ID,
+  appId: YOUR_APP_ID,
+  measurementId: YOUR_MEASUREMENT_ID,
 }
-export const auth = firebase.auth();
 
-export var provider = new firebase.auth.GoogleAuthProvider();
+// Initialize Firebase
+export var app
+if (!firebase.apps.length) {
+  app = firebase.initializeApp(firebaseConfig)
+} else {
+  app = firebase.app()
+}
+firebase.analytics()
 
-// export const signInWithGoogle = () => {
-//   return firebase.auth().signInWithPopup(provider);
-// };
-// firebase
-//   .auth()
-//   .signInWithPopup(provider)
-//   .then((result) => {
-//     /* @type {firebase.auth.OAuthCredential} */
-//     var credential = result.credential;
+export const auth = firebase.auth()
 
-//     // This gives you a Google Access Token. You can use it to access the Google API.
-//     var token = credential.accessToken;
-//     // The signed-in user info.
-//     var user = result.user;
-//     // ...
-//     suss();
-//   })
-//   .catch((error) => {
-//     // Handle Errors here.
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//     // The email of the user's account used.
-//     var email = error.email;
-//     // The firebase.auth.AuthCredential type that was used.
-//     var credential = error.credential;
-//     // ...
-//     err();
-//   });
+export var provider = new firebase.auth.GoogleAuthProvider()
+
+export var firebaseDb = firebase.database()

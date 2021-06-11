@@ -1,45 +1,45 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { auth, provider } from "../firebase/firebase";
+import { createContext, useContext, useEffect, useState } from "react"
+import { auth, provider } from "../firebase/firebase"
 
-const AuthContext = createContext();
-const UpdateUserContext = createContext();
-const SignOutContext = createContext();
+const AuthContext = createContext()
+const UpdateUserContext = createContext()
+const SignOutContext = createContext()
 
-export const useAuth = () => useContext(AuthContext);
-export const useSignIn = () => useContext(UpdateUserContext);
-export const useSignout = () => useContext(SignOutContext);
+export const useAuth = () => useContext(AuthContext)
+export const useSignIn = () => useContext(UpdateUserContext)
+export const useSignout = () => useContext(SignOutContext)
 
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState({})
 
   useEffect(() => {
     const unSubcribe = auth.onAuthStateChanged(function (user) {
-      if (user) setCurrentUser(user);
-      else setCurrentUser({});
-    });
+      if (user) setCurrentUser(user)
+      else setCurrentUser({})
+    })
 
-    return unSubcribe;
-  }, []);
+    return unSubcribe
+  }, [])
 
-  const signUpWithGoogle = () => {
-    auth
-      .signInWithPopup(provider)
-      .then((res) => setCurrentUser(res))
-      .catch((rej) => console.error(rej));
-  };
+  const signUpWithGoogle = async () => {
+    try {
+      await auth.signInWithRedirect(provider)
+      const userRes = await auth.getRedirectResult()
+      setCurrentUser(userRes.user)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-  const handleSignOut = () => {
-    auth
-      .signOut()
-      .then(() => {
-        // Sign-out successful.
-        setCurrentUser({});
-      })
-      .catch((err) => {
-        // An error happened.
-        console.error(err);
-      });
-  };
+  const handleSignOut = async () => {
+    try {
+      await auth.signOut()
+      // Sign-out successful.
+      setCurrentUser({})
+    } catch (error) {
+      throw new Error(error.message)
+    }
+  }
 
   return (
     <SignOutContext.Provider value={handleSignOut}>
@@ -49,5 +49,5 @@ export const AuthProvider = ({ children }) => {
         </AuthContext.Provider>
       </UpdateUserContext.Provider>
     </SignOutContext.Provider>
-  );
-};
+  )
+}

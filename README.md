@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+# To do app made with ReactJS and Firebase 🔥
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🌐 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), and public at [here](https://to-do-app-firebase-12f4f.web.app/). Use the [Firebase Realtime Database](https://firebase.google.com/docs/database) and [Firebase Authentication](https://firebase.google.com/docs/auth) as backend services.
 
-## Available Scripts
+## Table of content
 
-In the project directory, you can run:
+- 📌 [General Info](#general-info)
+- 💻 [Tech Stack](#tech-stack)
+- ⚙️ [Setup](#setup)
 
-### `yarn start`
+## General Info
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This is a simple project for todo list, use Firebase as backend services. You can create a to do list, modify a to do item, filter your to do list. And a feature to toggle dark/light theme.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tech Stack
 
-### `yarn test`
+- ⚛️ [ReactJS](https://reactjs.org/) - For UI
+- 🎉 [Material-UI](https://material-ui.com/) - For styling
+- 🔥 [Firebase](https://firebase.google.com/) - For storing data and authentication
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Setup
 
-### `yarn build`
+### Firebase setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Go to the [firebase](https://firebase.google.com/), sign in and create new project.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Create firebase project 🛠
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Next enter your Project's name and choose disable Google analytics.
 
-### `yarn eject`
+#### Setup the Authentication 👤
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Go the the Authentication tab on the left sidebar.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Click Get Started. Enable Google Sign-in Method, you can add another setting Sign-in Methods here.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Setup the Database 🎒
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Choose the Realtime Database on the sidebar.
+Click Create Database, choose the Server Location you prefer and next choose the Testing mode.
 
-## Learn More
+Click the + sign to create a new entry in the database, and enter
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+Name: users | Value: {"0": "0"}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Click add, and the result looks like this.
 
-### Code Splitting
+![img-1](./images/img-2.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Clone this repository
 
-### Analyzing the Bundle Size
+Clone this project to your computer, run the following command:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+git clone https://github.com/AtelyPham/to-do-firebase.git && cd to-do-firebase
+npm install
+```
 
-### Making a Progressive Web App
+### Setup the repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### In the firebase web 🔥
 
-### Advanced Configuration
+Click the gear icon (⚙️) next to the Project Overview on the left sidebar, choose Project Setting. Choose General tab and scroll down, choose the `</>` option for the web.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![img-2](./images/img-1.png)
 
-### Deployment
+Enter your register app (any name your prefer). And your can check hosting if you like.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+After that, copy the block of Firebase SDK where the content looks similar below.
 
-### `yarn build` fails to minify
+```
+var firebaseConfig = {
+  apiKey: YOUR_API_KEY,
+  authDomain: YOUR_DOMAIN,
+  databaseURL: YOUR_DATABASE_URL,
+  projectId: YOUR_PROJECT_ID,
+  storageBucket: YOUR_STORAGE_BUCKET,
+  messagingSenderId: YOUR_MESSAGE_SENDER_ID,
+  appId: YOUR_APP_ID,
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You can also find the above block in the General Project setting at SDK setup and configuration choose CDN see the content.
+
+![img-3](./images/img-3.png)
+
+Copy that block of code and base into the `/src/fireabase/firebase.js`.
+
+Finally you can run `npm start` to start the dev server of the project.
+
+# Issue
+
+If you have any problem, you can ask the the issue section of this repository or conntact the [facebook](https://www.facebook.com/phamtrung.tin.739) for help! 💪🏼

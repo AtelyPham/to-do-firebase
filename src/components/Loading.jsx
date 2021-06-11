@@ -1,7 +1,14 @@
-import React from "react";
+import { CircularProgress } from "@material-ui/core"
+import React from "react"
+import { useStyles } from "../hooks/useStyles"
 
-function Loading() {
-  return <h1>Loading!</h1>;
+const Loading = () => {
+  const classes = useStyles()
+  return (
+    <div className={classes.flexCenter}>
+      <CircularProgress color="secondary" />
+    </div>
+  )
 }
 
-export default Loading;
+export default Loading
